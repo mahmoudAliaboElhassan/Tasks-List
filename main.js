@@ -93,3 +93,4 @@ function checkNumber() {
     rmvall.classList.remove("visible");
   }
 }
+ 
