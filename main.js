@@ -50,6 +50,7 @@ btn.onclick = function () {
     el.value = "";
     task.classList.add("style-tsk");
     allTsks.append(task);
+    allTsks.style.marginBottom = "40px";
     document.body.append(allTsks);
     rmvall.onclick = function () {
       allTsks.querySelectorAll("div").forEach((element) => {
