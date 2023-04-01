@@ -1,15 +1,39 @@
-let el = document.getElementById("list");
+let input = document.getElementById("list");
 let btn = document.getElementById("btn");
 let scroll = document.querySelector(".up");
-let rmvall = document.querySelector(".all");
-let allTsks = document.createElement("div");
+let RmvAll = document.querySelector(".all");
+let AllTasks = document.querySelector(".alltask");
 let count = 0;
+let arrayTasks = [];
+if (window.localStorage.getItem("task")) {
+  arrayTasks = JSON.parse(window.localStorage.getItem("task"));
+}
+
+getFromLocal();
 btn.onclick = function () {
   checkInput();
   if (checkInput() === 0) {
     return;
   } else {
+    addTasks(input.value);
+  }
+};
+
+function addTasks(tasksTxt) {
+  const MyTask = {
+    title: tasksTxt,
+    id: Date.now(),
+  };
+  arrayTasks.push(MyTask);
+  AddToLocal(arrayTasks);
+  addToPage(arrayTasks);
+}
+
+function addToPage(ArrayOfTasks) {
+  AllTasks.innerHTML = "";
+  ArrayOfTasks.forEach((tsk) => {
     let task = document.createElement("div");
+    task.setAttribute("data-id", tsk.id);
     let word = document.createElement("div");
     count++;
     checkNumber();
@@ -24,7 +48,7 @@ btn.onclick = function () {
     angry.title = "angry";
     let star = document.createElement("div");
     star.setAttribute("class", "fa-solid fa-star star");
-    word.append(el.value);
+    word.appendChild(document.createTextNode(tsk.title));
     star.classList.add("style-star");
     angry.classList.remove("angry");
     angry.onclick = function () {
@@ -36,10 +60,15 @@ btn.onclick = function () {
     });
     star.title = "finished";
 
-    task.append(word);
     task.append(del);
     del.onclick = function () {
+      console.log(this.parentElement);
       task.remove();
+      ArrayOfTasks = ArrayOfTasks.filter(
+        (tsk) => tsk.id != task.getAttribute("data-id")
+      );
+      AddToLocal(ArrayOfTasks);
+      console.log(ArrayOfTasks);
       count--;
       checkNumber();
     };
@@ -47,27 +76,28 @@ btn.onclick = function () {
     task.append(word);
     task.append(angry);
     task.append(star);
-    el.value = "";
+    input.value = "";
     task.classList.add("style-tsk");
-    allTsks.append(task);
-    allTsks.style.marginBottom = "40px";
-    document.body.append(allTsks);
-    rmvall.onclick = function () {
-      allTsks.querySelectorAll("div").forEach((element) => {
+    AllTasks.append(task);
+    console.log(window.localStorage.getItem("task"));
+    AllTasks.style.marginBottom = "40px";
+    RmvAll.onclick = function () {
+      AllTasks.querySelectorAll("div").forEach((element) => {
         console.log(element);
         element.remove();
       });
       count = 0;
       checkNumber();
+      window.localStorage.removeItem("task");
     };
-    el.focus();
-  }
-};
+    input.focus();
+  });
+}
 
 function checkInput() {
   let reg = /^\S.*\S$/;
-  if (el.value.match(reg)) {
-    console.log(el.value.match(reg));
+  if (input.value.match(reg)) {
+    console.log(input.value.match(reg));
     return 1;
   } else {
     alert("Please Enter a Valid Task !");
@@ -89,9 +119,20 @@ scroll.onclick = function () {
 };
 
 function checkNumber() {
-  if (count > 0) rmvall.classList.add("visible");
+  if (count > 0) RmvAll.classList.add("visible");
   else {
-    rmvall.classList.remove("visible");
+    RmvAll.classList.remove("visible");
   }
 }
- 
+
+function AddToLocal(ArrayToLocal) {
+  window.localStorage.setItem("task", JSON.stringify(ArrayToLocal));
+}
+
+function getFromLocal() {
+  let data = window.localStorage.getItem("task");
+  let StoredTask = JSON.parse(data);
+  if (window.localStorage.getItem("task")) {
+    addToPage(StoredTask);
+  }
+}
