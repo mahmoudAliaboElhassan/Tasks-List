@@ -31,13 +31,14 @@ function addTasks(tasksTxt) {
         id: Date.now(),
     };
     arrayTasks.push(MyTask);
-    addToPage(arrayTasks);
     AddToLocal(arrayTasks);
+    addToPage(arrayTasks);
 }
 
 function addToPage(ArrayOfTasks) {
     AllTasks.innerHTML = "";
     ArrayOfTasks.forEach((tsk) => {
+        console.log(tsk.title);
         let task = document.createElement("div");
         task.setAttribute("data-id", tsk.id);
         let word = document.createElement("div");
@@ -75,12 +76,12 @@ function addToPage(ArrayOfTasks) {
             ArrayOfTasks = ArrayOfTasks.filter(
                 (tsk) => tsk.id != task.getAttribute("data-id")
             );
+            window.location.reload();
+            AddToLocal(ArrayOfTasks);
+            console.log(ArrayOfTasks);
             if (count == 0) {
                 window.location.reload();
-                window.localStorage.removeItem("task");
                 window.localStorage.setItem("count", count);
-            } else {
-                AddToLocal(ArrayOfTasks);
             }
         };
         task.append(word);
