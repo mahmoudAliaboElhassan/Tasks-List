@@ -3,7 +3,10 @@ let btn = document.getElementById("btn");
 let scroll = document.querySelector(".up");
 let RmvAll = document.querySelector(".all");
 let AllTasks = document.querySelector(".alltask");
-let count = 0;
+let count = 1;
+if (window.localStorage.getItem("count")) {
+    count = window.localStorage.getItem("count");
+}
 let arrayTasks = [];
 if (window.localStorage.getItem("task")) {
     arrayTasks = JSON.parse(window.localStorage.getItem("task"));
@@ -15,6 +18,9 @@ btn.onclick = function() {
     if (checkInput() === 0) {
         return;
     } else {
+        count++;
+        window.localStorage.setItem("count", count);
+        count = window.localStorage.getItem("count");
         addTasks(input.value);
     }
 };
@@ -35,7 +41,7 @@ function addToPage(ArrayOfTasks) {
         let task = document.createElement("div");
         task.setAttribute("data-id", tsk.id);
         let word = document.createElement("div");
-        count++;
+
         checkNumber();
         word.classList.add("style-word");
         let del = document.createElement("div");
@@ -59,20 +65,22 @@ function addToPage(ArrayOfTasks) {
             word.classList.toggle("finish");
         });
         star.title = "finished";
-
         task.append(del);
         del.onclick = function() {
-            task.remove();
             count--;
+            window.localStorage.setItem("count", count);
+            count = window.localStorage.getItem("count");
+            task.remove();
             checkNumber();
             ArrayOfTasks = ArrayOfTasks.filter(
                 (tsk) => tsk.id != task.getAttribute("data-id")
             );
-            AddToLocal(ArrayOfTasks);
-            if (count === 0) {
-                ArrayOfTasks = [];
+            if (count == 0) {
                 window.location.reload();
                 window.localStorage.removeItem("task");
+                window.localStorage.setItem("count", count);
+            } else {
+                AddToLocal(ArrayOfTasks);
             }
         };
         task.append(word);
@@ -89,6 +97,7 @@ function addToPage(ArrayOfTasks) {
             });
             count = 0;
             checkNumber();
+            window.localStorage.setItem("count", count);
             window.location.reload();
             window.localStorage.removeItem("task");
         };
