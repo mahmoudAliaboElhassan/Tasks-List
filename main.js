@@ -3,7 +3,7 @@ let btn = document.getElementById("btn");
 let scroll = document.querySelector(".up");
 let RmvAll = document.querySelector(".all");
 let AllTasks = document.querySelector(".alltask");
-let count = 1;
+let count = 0;
 
 function main() {
     let arrayTasks = [];
@@ -18,6 +18,7 @@ function main() {
         } else {
             count++;
             addTasks(input.value);
+            input.focus();
         }
     };
 
@@ -53,9 +54,11 @@ function main() {
             word.appendChild(document.createTextNode(tsk.title));
             star.classList.add("style-star");
             angry.classList.remove("angry");
-            angry.onclick = function() {
+            angry.addEventListener("click", function() {
                 angry.classList.toggle("angry");
-            };
+                word.classList.toggle("angry-mode");
+            });
+
             star.addEventListener("click", function() {
                 star.classList.toggle("click-style");
                 word.classList.toggle("finish");
@@ -69,7 +72,7 @@ function main() {
                 ArrayOfTasks = ArrayOfTasks.filter(
                     (tsk) => tsk.id != task.getAttribute("data-id")
                 );
-                AddToLocal(ArrayOfTasks)
+                AddToLocal(ArrayOfTasks);
                 main();
             };
             task.append(word);
@@ -89,7 +92,7 @@ function main() {
                 count = 0;
                 checkNumber();
             };
-            input.focus();
+
         });
     }
 
