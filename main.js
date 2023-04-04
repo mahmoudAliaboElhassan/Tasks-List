@@ -31,6 +31,8 @@ function main() {
     const MyTask = {
       title: tasksTxt,
       id: Date.now(),
+      finish: true,
+      postpone: true,
     };
     arrayTasks.push(MyTask);
     AddToLocal(arrayTasks);
@@ -54,20 +56,30 @@ function main() {
       let angry = document.createElement("div");
       angry.setAttribute("class", "fa-solid fa-face-angry angry");
       angry.classList.add("style-angry");
-      angry.title = "angry";
+      angry.title = "Postpone";
       let star = document.createElement("div");
       star.setAttribute("class", "fa-solid fa-star star");
       word.appendChild(document.createTextNode(tsk.title));
       star.classList.add("style-star");
-      angry.classList.remove("angry");
+      if (tsk.finish == false) {
+        star.classList.add("click-style");
+        word.classList.add("finish");
+      } else {
+        star.classList.remove("click-style");
+        word.classList.remove("finish");
+      }
+      if (tsk.postpone == false) {
+        angry.classList.add("angry");
+        word.classList.add("angry-mode");
+      } else {
+        angry.classList.remove("angry");
+        word.classList.remove("angry-mode");
+      }
       angry.addEventListener("click", function () {
-        angry.classList.toggle("angry");
-        word.classList.toggle("angry-mode");
+        Postpone(ArrayOfTasks, tsk.id);
       });
-
       star.addEventListener("click", function () {
-        star.classList.toggle("click-style");
-        word.classList.toggle("finish");
+        checkStatus(ArrayOfTasks, tsk.id);
       });
       star.title = "finished";
       task.append(del);
@@ -140,6 +152,38 @@ function main() {
     let StoredTask = JSON.parse(data);
     if (window.localStorage.getItem("task")) {
       addToPage(StoredTask);
+    }
+  }
+
+  function checkStatus(ArrayOfTasks, tskId) {
+    for (let i = 0; i < ArrayOfTasks.length; i++) {
+      if (ArrayOfTasks[i].id == tskId) {
+        if (ArrayOfTasks[i].finish == false) {
+          ArrayOfTasks[i].finish = true;
+          console.log(ArrayOfTasks[i].finish);
+        } else {
+          ArrayOfTasks[i].finish = false;
+          console.log(ArrayOfTasks[i].finish);
+        }
+        AddToLocal(ArrayOfTasks);
+        main();
+      }
+    }
+  }
+
+  function Postpone(ArrayOfTasks, tskId) {
+    for (let i = 0; i < ArrayOfTasks.length; i++) {
+      if (ArrayOfTasks[i].id == tskId) {
+        if (ArrayOfTasks[i].postpone == false) {
+          ArrayOfTasks[i].postpone = true;
+          console.log(ArrayOfTasks[i].postpone);
+        } else {
+          ArrayOfTasks[i].postpone = false;
+          console.log(ArrayOfTasks[i].postpone);
+        }
+        AddToLocal(ArrayOfTasks);
+        main();
+      }
     }
   }
 }
