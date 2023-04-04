@@ -5,6 +5,10 @@ let RmvAll = document.querySelector(".all");
 let AllTasks = document.querySelector(".alltask");
 let count = 0;
 
+if (window.localStorage.getItem("count")) {
+    count = window.localStorage.getItem("count");
+}
+
 function main() {
     let arrayTasks = [];
     if (window.localStorage.getItem("task")) {
@@ -17,6 +21,7 @@ function main() {
             return;
         } else {
             count++;
+            window.localStorage.setItem("count", count);
             addTasks(input.value);
             input.focus();
         }
@@ -67,6 +72,7 @@ function main() {
             task.append(del);
             del.onclick = function() {
                 count--;
+                window.localStorage.setItem("count", count);
                 task.remove();
                 checkNumber();
                 ArrayOfTasks = ArrayOfTasks.filter(
@@ -90,9 +96,9 @@ function main() {
                     element.remove();
                 });
                 count = 0;
+                window.localStorage.setItem("count", count);
                 checkNumber();
             };
-
         });
     }
 
