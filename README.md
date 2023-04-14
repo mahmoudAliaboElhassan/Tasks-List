@@ -1,18 +1,18 @@
-##Welcome to the Tasks List website! This web application is designed to help you keep track of your tasks and manage your to-do list effectively. Here, you can create, update, and delete tasks, mark them as complete, and view your tasks in a clean and simple interface.
+# Welcome to the Tasks List website! This web application is designed to help you keep track of your tasks and manage your to-do list effectively. Here, you can create, update, and delete tasks, mark them as complete, and view your tasks in a clean and simple interface.
 
-Website Components
+# Website Components
 The Tasks List website consists of several components that you will find useful when using the application.
 
-Buttons
-Add Task: Clicking on the "Add Task" button allows you to create a new task. You can enter a task description, set a due date, and add tags to categorize your tasks.
+## Buttons
+### Add Task: Clicking on the "Add Task" button allows you to create a new task. You can enter a task description, set a due date, and add tags to categorize your tasks.
 
-Delete Task: If you want to remove a task from your list, simply click on the "Delete Task" button. This will permanently delete the task from the website.
-Mark as Complete: Once you have completed a task, you can mark it as complete by clicking on the "Mark as Complete" button. This will visually indicate that the task has been done.
+### Delete Task: If you want to remove a task from your list, simply click on the "Delete Task" button. This will permanently delete the task from the website.
+### Mark as Complete: Once you have completed a task, you can mark it as complete by clicking on the "Mark as Complete" button. This will visually indicate that the task has been done.
 
-Task List
+## Tasks List
 The main section of the website displays the list of tasks that you have created. You can easily view,  and delete tasks from this list. Completed tasks are visually differentiated from pending tasks, making it easy to see which tasks are still pending and which ones are completed.
 
-How to Use
+### How to Use
 To get started with the Tasks List website, follow these steps:
 
 Click on the link to the website: Tasks List Website
