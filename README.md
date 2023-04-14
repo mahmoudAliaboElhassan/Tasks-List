@@ -19,7 +19,7 @@ The main section of the website displays the list of tasks that you have created
 ### How to Use
 To get started with the Tasks List website, follow these steps:
 
-1-Click on the link to the website: [Tasks List Website](https://mahmoudaliaboelhassan.github.io/Tasks-List/)
+1-Click on the link to the website: [Tasks List Website](https://mahmoudaliaboelhassan.github.io/Tasks-List/)       
 Once the website loads, you can start using the buttons to create, update, and delete tasks as needed.                                                                 
 2-You can mark tasks as complete by clicking on the "Mark as Complete" button.
 
