@@ -32,11 +32,12 @@ The Tasks List website is built using the following technologies:
 
 ### HTML: 
 for creating the structure and layout of the website.
-###CSS:
+### CSS:
 for styling the website and making it visually appealing.
-###JavaScript:
+### JavaScript:
 for implementing the functionality of the buttons, and managing tasks.
 ### GitHub Pages:
 for hosting the website online.
-##Conclusion
-###We hope you find the Tasks List website helpful in managing your tasks and staying organized. If you have any feedback or questions, please feel free to ##contact us. Thank you for using the Tasks List website!
+## Conclusion
+### We hope you find the Tasks List website helpful in managing your tasks and staying organized. If you have any feedback or questions, please feel free to  contact us.
+# Thank you for using the Tasks List website!
