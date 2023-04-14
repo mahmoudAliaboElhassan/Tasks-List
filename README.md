@@ -19,12 +19,12 @@ The main section of the website displays the list of tasks that you have created
 ### How to Use
 To get started with the Tasks List website, follow these steps:
 
-Click on the link to the website: Tasks List Website
+1-Click on the link to the website: [Tasks List Website](https://mahmoudaliaboelhassan.github.io/Tasks-List/)
 Once the website loads, you can start using the buttons to create, update, and delete tasks as needed.
-You can mark tasks as complete by clicking on the "Mark as Complete" button.
-You can view the status of your tasks in the status component, which shows the number of pending, completed, and total tasks.
-To delete a task, simply click on the "Delete Task" button.
-You can also view your tasks in the task list, which displays the task description, due date, and tags.
+2-You can mark tasks as complete by clicking on the "Mark as Complete" button.
+3-You can view the status of your tasks in the status component, which shows the number of pending, completed, and total tasks.
+4-To delete a task, simply click on the "Delete Task" button.
+5-You can also view your tasks in the task list, which displays the task description, due date, and tags.
 That's it! You're all set to start managing your tasks efficiently with the Tasks List website.
 
 ## Technologies Used
